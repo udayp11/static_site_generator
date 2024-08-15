@@ -45,16 +45,17 @@ class ParentNode(HTMLNode):
         elif self.children == None:
             raise ValueError("Invalid : no children")
         else:
-            return f"<{self.tag}{self.props_to_html()}>{self.children.recursive_node()}</{self.tag}>"
+            return f"<{self.tag}{self.props_to_html()}>{self.recursive_node()}</{self.tag}>"
+
+    def __repr__(self):
+        return f"ParentNode({self.tag},{self.children},{self.props})"
+
 
             
             
     
     def recursive_node(self):
         string=""
-        i = len(self.children)
-        if i == 0:
-            return
 
         for child in self.children:
             string += child.to_html()
