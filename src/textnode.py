@@ -1,16 +1,12 @@
 from htmlnode import LeafNode
 
 
-dict_textnode = {
-    "text" : "text",
-    "bold" : "b",
-    "italic" : "i",
-    "code" : "code",
-    "text_type_link" : "link",
-    "text_type_image"  :  "image"
-
-
-}
+text_type_text = "text"
+text_type_bold = "bold"
+text_type_italic = "italic"
+text_type_code = "code"
+text_type_link = "link"
+text_type_image = "image"
 
 class TextNode:
     def __init__(self,text,text_type,url=None):
@@ -28,19 +24,19 @@ class TextNode:
 
 
 def text_node_to_html_node(text_node):
-    if text_node.text_type == "text":
+    if text_node.text_type == text_type_text:
         return LeafNode(None,text_node.text)
-    elif text_node.text_type == "bold":
+    elif text_node.text_type == text_type_bold:
         return LeafNode("b",text_node.text)
-    elif text_node.text_type == "italic":
+    elif text_node.text_type ==text_type_italic:
         return LeafNode("i",text_node.text)
-    elif text_node.text_type == "code":
+    elif text_node.text_type == text_type_code:
         return LeafNode("code",text_node.text)
-    elif text_node.text_type == "link":
+    elif text_node.text_type == text_type_link:
         props = {}
         props["href"] = text_node.url
         return LeafNode("a",text_node.text, props )
-    elif text_node.text_type == "image":
+    elif text_node.text_type == text_type_image:
         props = {}
         props["src"] = text_node.url
         props["alt"]  = text_node.text

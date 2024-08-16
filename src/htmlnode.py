@@ -25,13 +25,16 @@ class LeafNode(HTMLNode):
         super().__init__(tag,value,[],props)
 
     def to_html(self):
+        
         if self.value == None:
             raise ValueError("Invalid HTML: no value")
         elif self.tag == None:
             return self.value
         else:
             return f"<{self.tag}{self.props_to_html()}>{self.value}</{self.tag}>"
+
     def __repr__(self):
+
         return f"LeafNode({self.tag}, {self.value}, {self.props})"
 
 
@@ -48,12 +51,10 @@ class ParentNode(HTMLNode):
             return f"<{self.tag}{self.props_to_html()}>{self.recursive_node()}</{self.tag}>"
 
     def __repr__(self):
+
         return f"ParentNode({self.tag},{self.children},{self.props})"
-
-
             
-            
-    
+              
     def recursive_node(self):
         string=""
 
