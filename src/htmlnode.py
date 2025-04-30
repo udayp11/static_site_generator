@@ -22,7 +22,7 @@ class HTMLNode:
 
 class LeafNode(HTMLNode):
     def __init__(self,tag,value,props=None):
-        super().__init__(tag,value,[],props)
+        super().__init__(tag,value,None,props)
 
     def to_html(self):
         
@@ -43,24 +43,23 @@ class ParentNode(HTMLNode):
         super().__init__(tag,None,children,props)
     def to_html(self):
         
-        if self.tag == None:
+        if self.tag is None:
             raise ValueError("Invalid HTML: no value")
-        elif self.children == None:
+        if self.children is None:
             raise ValueError("Invalid : no children")
-        else:
-            return f"<{self.tag}{self.props_to_html()}>{self.recursive_node()}</{self.tag}>"
+
+        child_string = ""
+
+        for child in self.children:
+            child_string += child.to_html()
+
+        return f"<{self.tag}{self.props_to_html()}>{child_string}</{self.tag}>"
 
     def __repr__(self):
 
         return f"ParentNode({self.tag},{self.children},{self.props})"
             
-              
-    def recursive_node(self):
-        string=""
-
-        for child in self.children:
-            string += child.to_html()
-        return string
+    
 
         
 
