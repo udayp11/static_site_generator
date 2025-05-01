@@ -91,7 +91,7 @@ def split_nodes_link(old_nodes):
             if split_parts[0] != "":
                 new_nodes.append(TextNode(split_parts[0],TextType.TEXT))
 
-                new_nodes.append(TextNode(
+            new_nodes.append(TextNode(
                     link[0],
                     TextType.LINK,
                     link[1]

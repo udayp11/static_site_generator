@@ -1,5 +1,9 @@
-from htmlnode import HTMLNode
+import os
+import shutil
+import sys
 
+
+from htmlnode import HTMLNode
 from split_delimiter import (split_nodes_delimiter,
                         extract_markdown_images,
                         extract_markdown_links,
@@ -8,29 +12,61 @@ from split_delimiter import (split_nodes_delimiter,
                         text_to_textnodes)
 from markdown_to_blocks import (markdown_to_blocks,markdown_to_html_node)
 
+from generatepage import generate_pages_recursive
+
 from textnode import (TextNode, TextType)
+
+
+
+dir_path_static = "./static"
+#dir_path_public = "./public"
+dir_path_content = "./content"
+template_path = "./template.html"
+dir_path_docs = "./docs"
+
+
+
 def main():
-
-    Test_node = TextNode("This is a text node", "bold", "https://www.boot.dev")
-    Test_node1 = TextNode("This is a text node", "bold", "https://www.boot.dev")
-    Test_node2 = TextNode("This is a text node2", "bold", "https://www.boot.dev")
-
-    #Test_htmlnode = HTMLNode("p","hello","",{"href": "https://www.google.com", "target": "_blank",})
-    #text = "This is **text** with an _italic_ word and a `code block` and an ![obi wan image](https://i.imgur.com/fJRm4Vk.jpeg) and a [link](https://boot.dev)"
-    text = """
-                # This is a heading
     
-                This is a paragraph of text. It has some **bold** and _italic_ words inside of it.
 
-                - This is the first list item in a list block
-                - This is a list item
-                                    """
-    print(markdown_to_html_node(text))
+    if len(sys.argv) > 1:
+        basepath = sys.argv[1]
+    else:        
+        basepath = "/"
+
+    print("Deleting docs directory...")
+    if os.path.exists(dir_path_docs):
+        shutil.rmtree(dir_path_docs)
+
+    print("Copying static files to docs directory...")
+    files_source_to_dest(dir_path_static, dir_path_docs)
+
+  
+
+    print("Generating content...")
+    generate_pages_recursive(dir_path_content, template_path, dir_path_docs,basepath)
+
+
+def files_source_to_dest(source_dir,dest_dir):
+
+    if os.path.exists(dest_dir):
+        shutil.rmtree(dest_dir)
     
-    
-# [("to boot dev", "https://www.boot.dev"), ("to youtube", "https://www.youtube.com/@bootdotdev")]
-     #or repr(Test_node)
-    #print(Test_node==Test_node1)
-    #print(Test_node==Test_node2)
+    os.mkdir(dest_dir)
+
+    for item in os.listdir(source_dir):
+        source_path = os.path.join(source_dir,item)
+        dest_path = os.path.join(dest_dir,item)
+
+        if os.path.isfile(source_path):
+            print(f"Copying file {source_path} to {dest_path}")
+            shutil.copy(source_path,dest_path)
+
+        else:
+            print(f"Copying directory {source_path} to {dest_path}")
+            files_source_to_dest(source_path,dest_path)
+
+
+
 
 main()
