@@ -37,15 +37,18 @@ You can see a demo of the generated site here:
 - Python 3.x installed on the system
 
  **Clone the repo**
-git clone https://github.com/udayp11/static_site_generator.git
+ ```bash
+git clone https://github.com/udayp11/static_site_generator.git 
+```
+```bash
 cd static_site_generator
-
+```
 **Prepare your content**
 - Add your **HTML/Markdown content files** inside the `content/` folder  
 - Add your **images, CSS, and other assets** inside the `static/` folder  
 - Modify template.html to change layout, header, footer, CSS links, etc.
 
-The generator will process the files in `src/` and copy static files into the final `docs/` build folder.
+The generator will process the files in `content/` and copy static files into the final `docs/` build folder.
 
 ## 🚀 Usage
 
@@ -71,10 +74,11 @@ Generate the static site into the `docs/` folder:
 
 ## Deployment(Github Pages)🌐
 
-1. Push the repo to GitHub  
-2. Go to **Settings > Pages**  
-3. Select branch: `main` and folder: `/docs`  
-4. Your site will be live at:  https://username.github.io/repo-name/
+1. ✅ Push the repo to GitHub  
+2. ✅Go to **Settings > Pages**  
+3. ✅Select branch: `main` and folder: `/docs`  
+4. 🚀Your site will be live at: 
+ https://username.github.io/repo-name/
 
 ## Contributing
 
