@@ -41,7 +41,7 @@ git clone https://github.com/udayp11/static_site_generator.git
 cd static_site_generator
 
 **Prepare your content**
-- Add your **HTML/Markdown content files** inside the `src/` folder  
+- Add your **HTML/Markdown content files** inside the `content/` folder  
 - Add your **images, CSS, and other assets** inside the `static/` folder  
 - Modify template.html to change layout, header, footer, CSS links, etc.
 
@@ -53,15 +53,28 @@ Generate the static site into the `docs/` folder:
 
 - Production (build for GitHub Pages with base path “/REPO_NAME/”):
 
-- ./build.sh
+
+```bash
+./build.sh 
+```
 
 
-### Build + Serve
+### Build + Serve Locally
 
 - Local (build to docs/ with base path “/”, then serve on http://localhost:8888):
 
-- ./main.sh
+```bash
+./main.sh 
+```
 
+## Deployment(Github Pages)🌐
+
+##  Deployment (GitHub Pages)
+
+1. Push the repo to GitHub  
+2. Go to **Settings > Pages**  
+3. Select branch: `main` and folder: `/docs`  
+4. Your site will be live at:  https://username.github.io/repo-name/
 
 ## Contributing
 
