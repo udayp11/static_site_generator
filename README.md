@@ -47,6 +47,8 @@ cd static_site_generator
 
 The generator will process the files in `src/` and copy static files into the final `docs/` build folder.
 
+## 🚀 Usage
+
 ### Build only
 
 Generate the static site into the `docs/` folder:
