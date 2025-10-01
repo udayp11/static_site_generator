@@ -69,8 +69,6 @@ Generate the static site into the `docs/` folder:
 
 ## Deployment(Github Pages)🌐
 
-##  Deployment (GitHub Pages)
-
 1. Push the repo to GitHub  
 2. Go to **Settings > Pages**  
 3. Select branch: `main` and folder: `/docs`  
